@@ -41,6 +41,9 @@ data$Obese <- as.factor(data$Obese)
 
 # Introduction {#sec-intro}
 
+The prevalence of obesity in Scotland has been a topic of increasing concern over recent years, prompting analysis through the Scottish Health Survey. This report examines trends in obesity prevalence within Scotland from 2013-2016, scrutinizing any notable shifts or patterns. Furthermore, it delves into disparities in obesity rates across various demographic factors including age, gender, socio-economic status, and lifestyle behaviours. By synthesizing data from the survey, this report aims to provide insights into the current landscape of obesity in Scotland, shedding light on potential areas for targeted interventions and public health initiatives. We will be answering the following questions: Has the prevalence of obesity in Scotland changed over the given years of the Scottish Health Survey and are there any differences in obesity by age, gender, socio-economic status, or lifestyle factors?
+
+
 # Exploratory Analysis {#sec-EA}
 
 # Formal Analysis {#sec-FA}
