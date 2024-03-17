@@ -45,7 +45,58 @@ The prevalence of obesity in Scotland has been a topic of increasing concern ove
 
 # Exploratory Analysis {#sec-EA}
 
-Table 1 displays the changing obesity rate by year. While there doesn't appear to be an obvious overall trend, it is worth noting the jump of about 0.5% from 2014 to 2015. Perhaps if the data were sampled over more years we could discern any potential trends.
+```{r}
+obesity_by_year <- data |>
+  group_by(Year) |>
+  summarise(Obesity_Proportion = mean(Obese == "Yes"))
+obesity_by_age <- data |>
+  group_by(Age) |>
+  summarise(Obesity_Proportion = mean(Obese == "Yes"))
+obesity_by_veg <- data |>
+  group_by(Veg) |>
+  summarise(Obesity_Proportion = mean(Obese == "Yes"))
+obesity_by_fruit <- data |>
+  group_by(Fruit) |>
+  summarise(Obesity_Proportion = mean(Obese == "Yes"))
+obesity_by_sex <- data |>
+  group_by(Sex) |>
+  summarise(Obesity_Proportion = mean(Obese == "Yes"))
+obesity_by_education <- data |>
+  group_by(Education) |>
+  summarise(Obesity_Proportion = mean(Obese == "Yes"))
+
+
+ggplot(data = obesity_by_age, aes(x = Age, y = Obesity_Proportion)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  labs(x = "Age Group", y = "Proportion with Obesity")
+
+ggplot(data = obesity_by_veg, aes(x = Veg, y = Obesity_Proportion, fill = Veg)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(x = "Vegetable Intake", y = "Proportion with Obesity") +
+  scale_fill_manual(values = c("Yes" = "skyblue", "No" = "darkorange")) +
+  theme_minimal()
+
+ggplot(data = obesity_by_fruit, aes(x = Fruit, y = Obesity_Proportion, fill = Fruit)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(x = "Fruit Intake", y = "Proportion with Obesity") +
+  scale_fill_manual(values = c("Yes" = "skyblue", "No" = "darkorange")) +
+  theme_minimal()
+
+ggplot(data = obesity_by_education, aes(x = Education, y = Obesity_Proportion)) +
+  geom_bar(stat = "identity", fill = "skyblue", color = "black") +
+  labs(x = "Education Level", y = "Proportion with Obesity") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  theme_minimal()
+
+ggplot(data = obesity_by_sex, aes(x = Sex, y = Obesity_Proportion, fill = Sex)) +
+  geom_bar(stat = "identity", position = "dodge", color = "black") +
+  labs(x = "Sex", y = "Proportion with Obesity") +
+  scale_fill_manual(values = c("Female" = "skyblue", "Male" = "darkorange")) +
+  theme_minimal()
+
+```
+
+Table 1 displays the obesity rates by year in Scotland from 2013 to 2016. While there doesn't appear to be an obvious overall trend, it is worth noting the jump of 0.46% from 2014 to 2015. Perhaps if the data were sampled over more years we could discern any potential trends.
 
 | Year | Percentage of Population Obese |
 |------|--------------------------------|
@@ -56,23 +107,23 @@ Table 1 displays the changing obesity rate by year. While there doesn't appear t
 
 : Table 1: Obesity by Year in Scotland
 
-We then look at the prevalence of obesity in each age group, ranging from ages 16 to 99. We can see in @fig-fig1 that as age increases, obesity rates increase, up to the age of around 65. After this point, obesity rates start to fall, which is makes sense as those who aren't obese will live longer on average. We also see that at the extreme upper ages, the obesity rates are 0, however there are significantly fewer samples which should be taken into account.
+We then look at the prevalence of obesity in each age group, ranging from ages 16 to 99. We can see in @fig-fig1 that as age increases, obesity rates increase, up to the age of around 65. After this point, obesity rates start to fall, which makes sense, as those who aren't obese will live longer on average. We also see that at the extreme upper ages, the obesity rates are 0, however there are significantly fewer samples which should be taken into account.
 
-![Obesity Proportions by Age](images/age.png){#fig-fig1 alt="Obesity Proportions by Age" fig-align="center"}
+![Proportions of Obesity by Age](images/age.png){#fig-fig1 fig-align="center"}
 
-In @fig-fig2 and @fig-fig3, we see the difference in obesity proportions between those who consume the recommended daily vegetable and fruit intake and those who don't, respectively. Intuitively, we see that obesity rates are lower among those who eat enough vegetables (around 2.7%), however there is not much difference between those who eat enough fruit or not, with obesity rates being marginally greater among those who do.
+In @fig-fig2 and @fig-fig3, we see the difference in obesity proportions between those who consume the recommended daily vegetable and fruit intake and those who don't, respectively. Intuitively, we see that obesity rates are lower among those who eat enough vegetables (around 2.8%), however there is not much difference between those who eat enough fruit or not, with obesity rates being marginally greater among those who do.
 
-![Obesity Proportion by Veg Intake](images/veg%20intake.png){#fig-fig2 alt="Obesity Proportion by Veg Intake" fig-align="center"}
+![Obesity Proportion by Veg Intake](images/veg intake.png){#fig-fig2 fig-align="center" width="550"}
 
-![Obesity Proportion by Fruit Intake](images/fruit%20intake.png){#fig-fig3 alt="Obesity Proportion by Fruit Intake" fig-align="center"}
+![Obesity Proportion by Fruit Intake](images/fruit intake.png){#fig-fig3 fig-align="center" width="550"}
 
-@fig-fig4 displays the differing obesity proportions by the highest level of education the individual received. We can see that no qualifications ranks top, with around 38.1% being obese, while the lowest, those with a degree or higher, is almost 14% lower.
+@fig-fig4 displays the differing obesity proportions by the highest level of education the individual received. We can see that no qualifications ranks top, with around 38.2% being obese, while the lowest, those with a degree or higher, is almost 14% lower, at 24.7%.
 
-![Obesity Proportion by Education](images/education.png){#fig-fig4 alt="Obesity Proportion by Education" fig-align="center"}
+![Obesity Proportion by Education](images/education.png){#fig-fig4 fig-align="center"}
 
 Lastly, in @fig-fig5, we can see that obesity rates for males are about 2.3% lower than for females.
 
-![Obesity Proportion by Sex](images/sex.png){#fig-fig5 alt="Obesity Proportion by Sex" fig-align="center"}
+![Obesity Proportion by Sex](images/sex.png){#fig-fig5 fig-align="center" width="700"}
 
 # Formal Analysis {#sec-FA}
 
