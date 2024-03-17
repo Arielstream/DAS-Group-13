@@ -43,19 +43,43 @@ data$Obese <- as.factor(data$Obese)
 
 The prevalence of obesity in Scotland has been a topic of increasing concern over recent years, prompting analysis through the Scottish Health Survey. This report examines trends in obesity prevalence within Scotland from 2013-2016, scrutinizing any notable shifts or patterns. Furthermore, it delves into disparities in obesity rates across various demographic factors including age, gender, socio-economic status, and lifestyle behaviours. By synthesizing data from the survey, this report aims to provide insights into the current landscape of obesity in Scotland, shedding light on potential areas for targeted interventions and public health initiatives. We will be answering the following questions: Has the prevalence of obesity in Scotland changed over the given years of the Scottish Health Survey and are there any differences in obesity by age, gender, socio-economic status, or lifestyle factors?
 
-
 # Exploratory Analysis {#sec-EA}
 
+Table 1 displays the changing obesity rate by year. While there doesn't appear to be an obvious overall trend, it is worth noting the jump of about 0.5% from 2014 to 2015. Perhaps if the data were sampled over more years we could discern any potential trends.
+
+| Year | Percentage of Population Obese |
+|------|--------------------------------|
+| 2013 | 30.30                          |
+| 2014 | 30.18                          |
+| 2015 | 30.64                          |
+| 2016 | 30.53                          |
+
+: Table 1: Obesity by Year in Scotland
+
+We then look at the prevalence of obesity in each age group, ranging from ages 16 to 99. We can see in @fig-fig1 that as age increases, obesity rates increase, up to the age of around 65. After this point, obesity rates start to fall, which is makes sense as those who aren't obese will live longer on average. We also see that at the extreme upper ages, the obesity rates are 0, however there are significantly fewer samples which should be taken into account.
+
+![Obesity Proportions by Age](images/age.png){#fig-fig1 alt="Obesity Proportions by Age" fig-align="center"}
+
+In @fig-fig2 and @fig-fig3, we see the difference in obesity proportions between those who consume the recommended daily vegetable and fruit intake and those who don't, respectively. Intuitively, we see that obesity rates are lower among those who eat enough vegetables (around 2.7%), however there is not much difference between those who eat enough fruit or not, with obesity rates being marginally greater among those who do.
+
+![Obesity Proportion by Veg Intake](images/veg%20intake.png){#fig-fig2 alt="Obesity Proportion by Veg Intake" fig-align="center"}
+
+![Obesity Proportion by Fruit Intake](images/fruit%20intake.png){#fig-fig3 alt="Obesity Proportion by Fruit Intake" fig-align="center"}
+
+@fig-fig4 displays the differing obesity proportions by the highest level of education the individual received. We can see that no qualifications ranks top, with around 38.1% being obese, while the lowest, those with a degree or higher, is almost 14% lower.
+
+![Obesity Proportion by Education](images/education.png){#fig-fig4 alt="Obesity Proportion by Education" fig-align="center"}
+
+Lastly, in @fig-fig5, we can see that obesity rates for males are about 2.3% lower than for females.
+
+![Obesity Proportion by Sex](images/sex.png){#fig-fig5 alt="Obesity Proportion by Sex" fig-align="center"}
+
 # Formal Analysis {#sec-FA}
+
 We always use the logistic regression model while accounting for the binary nature of the response variable.
 
-
-
-
-
-
-
 The second model allows us to examine the relationship between various factors (age, gender, education, vegetable consumption, fruit consumption) and the probability of being classified as obese. It can be written as:
+
 ```{=tex}
 \begin{align}
 \log \left( \frac{p_i}{1 - p_i} \right) &= \beta_0 + \beta_1 \cdot \text{Age} + \beta_2 \cdot \text{SexMale} + \beta_3 \cdot \text{EducationHigher grade or equiv} + \\
@@ -72,7 +96,6 @@ where:
 -   $\epsilon_i$is the error term.
 
 Here, the logit link function is used to model the relationship between the linear combination of explanatory variables and the probability of being obese. The coefficients $\beta_1, \beta_2, \ldots, \beta_9$ represent the change in the log odds of being classified as obese associated with a one-unit change in the respective explanatory variable, holding other variables constant.
-
 
 ```{r}
 #| echo: false
@@ -92,6 +115,7 @@ Regarding education, individuals with higher grades or equivalent education, HNC
 Interestingly, the coefficient for consuming recommended daily vegetables (Veg Yes) is negative (-0.103471), indicating that individuals who consume recommended daily vegetable intake have lower odds of being classified as obese. However, the coefficient for consuming recommended daily fruit intake (Fruit Yes) is not statistically significant (p-value = 0.942087), suggesting that there is no significant association between fruit intake and obesity status.
 
 Overall, these findings suggest that age, gender, educational attainment, and vegetable consumption are associated with differences in obesity prevalence in the Scottish Health Survey data from 2013 to 2016.
+
 ```{r}
 #| echo: false
 #| fig-cap: Odds of obesity classification with age, gender, socio-economic status or lifestyle factors.
@@ -103,10 +127,9 @@ Overall, these findings suggest that age, gender, educational attainment, and ve
 plot_model(mod.all, show.values = TRUE,
            title = "", show.p = FALSE, value.offset = 0.25)
 ```
-We interpret the odds ratios as follows: For each year increase in the individuals’ age, their odds of being classified as obese increase (by a factor of 1.01). Men’s odds of being classified as obese were 0.88 times those of women. 
-For educational levels, compared to individuals with a degree or higher education, those with higher grade or equivalent education had 1.25 times the odds of being classified as obese. Similarly, individuals with HNC/D or equivalent education had 1.43 times the odds, those with no qualifications had 1.59 times the odds, those with other school level education had 1.37 times the odds, and those with standard grade or equivalent education had 1.52 times the odds of being classified as obese.
+
+We interpret the odds ratios as follows: For each year increase in the individuals’ age, their odds of being classified as obese increase (by a factor of 1.01). Men’s odds of being classified as obese were 0.88 times those of women. For educational levels, compared to individuals with a degree or higher education, those with higher grade or equivalent education had 1.25 times the odds of being classified as obese. Similarly, individuals with HNC/D or equivalent education had 1.43 times the odds, those with no qualifications had 1.59 times the odds, those with other school level education had 1.37 times the odds, and those with standard grade or equivalent education had 1.52 times the odds of being classified as obese.
 
 Regarding lifestyle factors, individuals who consume recommended daily vegetables had 0.90 times the odds of being classified as obese compared to those who do not consume recommended daily vegetables. However, there was no significant association found between consuming recommended daily fruit intake and obesity status.
 
 # Conclusions {#sec-con}
-
