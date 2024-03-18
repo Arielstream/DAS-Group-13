@@ -104,9 +104,16 @@ plot_model(mod.all, show.values = TRUE,
            title = "", show.p = FALSE, value.offset = 0.25)
 ```
 We interpret the odds ratios as follows: For each year increase in the individuals’ age, their odds of being classified as obese increase (by a factor of 1.01). Men’s odds of being classified as obese were 0.88 times those of women. 
-For educational levels, compared to individuals with a degree or higher education, those with higher grade or equivalent education had 1.25 times the odds of being classified as obese. Similarly, individuals with HNC/D or equivalent education had 1.43 times the odds, those with no qualifications had 1.59 times the odds, those with other school level education had 1.37 times the odds, and those with standard grade or equivalent education had 1.52 times the odds of being classified as obese.
+For educational levels, compared to individuals with a degree or higher education, those with higher grades or equivalent education had 1.25 times the odds of being classified as obese. Similarly, individuals with HNC/D or equivalent education had 1.43 times the odds, those with no qualifications had 1.59 times the odds, those with other school level education had 1.37 times the odds, and those with standard grade or equivalent education had 1.52 times the odds of being classified as obese.
 
 Regarding lifestyle factors, individuals who consume recommended daily vegetables had 0.90 times the odds of being classified as obese compared to those who do not consume recommended daily vegetables. However, there was no significant association found between consuming recommended daily fruit intake and obesity status.
 
 # Conclusions {#sec-con}
 
+In conclusion, this statistical analysis sheds light on the prevalence of obesity in Scotland and its association with various socio-economic and lifestyle factors. Through examination of data from the Scottish Health Survey spanning from 2013 to 2016, several key findings emerge. 
+
+Firstly, the prevalence of obesity shows notable correlations with age, gender, educational attainment, and vegetable consumption. Specifically, older individuals exhibit higher odds of being classified as obese with log odds of being classified as obese increasing by approximately 1.1% with each unit increase in age. While males demonstrate lower odds compared to females(0.88 times those of women). Moreover, individuals with lower educational attainment, as well as those consuming fewer recommended daily vegetables, are more likely to be classified as obese.
+
+These findings underscore the multifaceted nature of obesity, influenced by both demographic and lifestyle factors. Understanding these associations is crucial for informing targeted interventions and public health initiatives aimed at combating obesity in Scotland. By addressing disparities in obesity prevalence across different demographic groups and promoting healthy lifestyle behaviours such as increased vegetable consumption, policymakers and healthcare professionals can work towards mitigating the burden of obesity and improving population health outcomes.
+
+Moving forward, continued surveillance and analysis of obesity trends, alongside comprehensive interventions addressing its determinants, are essential for tackling this pressing public health issue and fostering a healthier future for Scotland's population.
