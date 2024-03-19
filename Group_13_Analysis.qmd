@@ -6,7 +6,7 @@ execute:
   eval: true
 number-sections: true
 format:
-  pdf:
+  html:
     embed-resources: true
 editor_options: 
   chunk_output_type: console
@@ -108,7 +108,7 @@ Table 1 displays the obesity rates by year in Scotland from 2013 to 2016. While 
 | 2015 | 30.64                          |
 | 2016 | 30.53                          |
 
-: Table 1: Obesity by Year in Scotland
+: Obesity by Year in Scotland
 
 We then look at the prevalence of obesity in each age group, ranging from ages 16 to 99. It appears in @fig-fig1 that as age increases, obesity rates increase, up to the age of around 65. After this point, obesity rates start to fall, which makes sense, as those who aren't obese will live longer, on average. We also see that at the extreme upper ages, the obesity rates are 0, however there are significantly fewer samples which should be taken into account.
 
@@ -161,7 +161,7 @@ mod.y %>%
 | (Intercept) | -12.080  | 33.321     | -0.363  | 0.717       |
 | Year        | 0.005    | 0.016      | 0.338   | 0.736       |
 
-: Table 2: Estimates of the first model coefficients
+: Estimates of the first model coefficients
 
 The coefficient of Year is a positive value of 0.005586. This means that as the years increase (as time goes on), the log odds of being obese also increase by approximately 1.006%.
 
@@ -242,7 +242,7 @@ mod.all %>%
 | VegYes                     | -0.103   | 0.045      | -2.279  | 0.02265     |
 | FruitYes                   | 0.003    | 0.042      | 0.073   | 0.94209     |
 
-Table 3: Estimates of the second model coefficients
+: Estimates of the second model coefficients
 
 We see that the coefficient for Age is positive (0.011004), indicating that with each unit increase in age, the log odds of being classified as obese increase by approximately 1.1%. The coefficient for males is negative (-0.124389), suggesting that males have lower odds of being classified as obese compared to females.
 
@@ -266,7 +266,7 @@ plot_model(mod.all, show.values = TRUE,
            title = "", show.p = FALSE, value.offset = 0.25)
 ```
 
-We interpret the odds ratios as follows: For each year increase in the individuals' age, their odds of being classified as obese increase (by a factor of 1.01). Men's odds of being classified as obese were 0.88 times those of women. For educational levels, compared to individuals with a degree or higher education, those with higher grades or equivalent education had 1.25 times the odds of being classified as obese. Similarly, individuals with HNC/D or equivalent education had 1.43 times the odds, those with no qualifications had 1.59 times the odds, those with other school level education had 1.37 times the odds, and those with standard grade or equivalent education had 1.52 times the odds of being classified as obese.
+We interpret the odds ratios as follows from @fig-odd2: For each year increase in the individuals' age, their odds of being classified as obese increase (by a factor of 1.01). Men's odds of being classified as obese were 0.88 times those of women. For educational levels, compared to individuals with a degree or higher education, those with higher grades or equivalent education had 1.25 times the odds of being classified as obese. Similarly, individuals with HNC/D or equivalent education had 1.43 times the odds, those with no qualifications had 1.59 times the odds, those with other school level education had 1.37 times the odds, and those with standard grade or equivalent education had 1.52 times the odds of being classified as obese.
 
 Regarding lifestyle factors, individuals who consume recommended daily vegetables had 0.90 times the odds of being classified as obese compared to those who do not consume recommended daily vegetables. However, there was no significant association found between consuming recommended daily fruit intake and obesity status.
 
