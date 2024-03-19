@@ -1,0 +1,74 @@
+---
+title: "Task B"
+author: "Holly"
+format: html
+editor: visual
+echo: false
+message: false
+---
+
+## Introduction
+The prevalence of obesity in Scotland has been a topic of increasing concern over recent years, prompting analysis through the Scottish Health Survey. This report examines trends in obesity prevalence within Scotland from 2013-2016, scrutinizing any notable shifts or patterns. Furthermore, it delves into disparities in obesity rates across various demographic factors including age, gender, socio-economic status, and lifestyle behaviours. By synthesizing data from the survey, this report aims to provide insights into the current landscape of obesity in Scotland, shedding light on potential areas for targeted interventions and public health initiatives. We will be answering the following questions: Has the prevalence of obesity in Scotland changed over the given years of the Scottish Health Survey and are there any differences in obesity by age, gender, socio-economic status, or lifestyle factors?
+## Exploratory Analysis
+
+
+## Formal Analysis
+We will use the logistic regression model due to the binary nature of the response variable.
+```{r, message=FALSE}
+# echo: false
+library(dplyr)
+library(ggplot2)
+library(stats)
+library(readr)
+library(janitor)
+library(tidymodels)
+
+data<- read.csv('DAProject5.csv')
+data$Sex <- as.factor(data$Sex)
+data$Education <- as.factor(data$Education)
+data$Veg <- as.factor(data$Veg)
+data$Fruit <- as.factor(data$Fruit)
+data$Obese <- as.factor(data$Obese)
+```
+
+
+```{r}
+# echo: false
+ 
+ mod.all <- logistic_reg()
+mod.all <- mod.all |> fit (Obese ~ Year, data, family=binomial) |>
+  extract_fit_engine()
+mod.all %>%
+  summary()
+
+
+```
+The coefficient of Year is a positive value of 0.005586. This means that as the years increase (as time goes on), the log odds of being obese also increase by approximately 1.006%.
+
+```{r}
+library(sjPlot)
+
+library(ggplot2)
+plot_model(mod.all, show.values = TRUE,
+           title = "", show.p = FALSE, value.offset = 0.25)
+```
+The above figure shows the odds ratios of the year and obesity. From this data it follows that for each year increase between 2013-2016, the odds of an individual being classified as obese increase by a factor of 1.01.
+```{r}
+m1 <- glm(Obese ~ Year,
+          data = data,
+          family = "binomial"
+)
+
+plot_model(m1,
+           type = "pred",
+           terms = "Year"
+) +
+  labs(title = 'Probability of obesity as time goes on between 2013-2016 in Scotland', y = "Probability of obesity")
+```
+
+This graph shows the percentage probability of an individual being obese as time increases between 2013-2016. The shaded part of the graph depicts the confidence intervals.The confidence intervals are fairly narrow and range from a gap of roughly 1.5% to 2% indicating that the estimated values are relatively stable.
+As we can see there is a positive correlation between the percentage probability of an individual being obese and the forwards movement of time.
+
+
+
+
