@@ -163,7 +163,7 @@ mod.y %>%
 
 : Estimates of the first model coefficients
 
-The coefficient of Year is a positive value of 0.005586. This means that as the years increase (as time goes on), the log odds of being obese also increase by approximately 1.006%.
+The coefficient of Year is a positive value of 0.005586. This means that as the years increase (as time goes on), the odds of being obese also increase by approximately 1.006%.
 
 ```{r}
 #| echo: false
